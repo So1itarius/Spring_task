@@ -1,15 +1,40 @@
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Insert title here</title>
+    <title>Postgre display</title>
 </head>
 <body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each="row: ${orderList}">
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.title}"></td>
+        <td th:text="${row.price}"></td>
+    </tr>
+</table>
 <form action="/new-order" method="POST">
     <label>Title</label>
     <input type="text" name="title">
     <label>Price</label>
     <input type="text" name="price">
     <input type="submit" value="Add new order">
+</form>
+<form action="/del-order" method="POST">
+    <label>Delete_id</label>
+    <input type="text" name="delete">
+    <input type="submit" value="Delete order">
+</form>
+<form action="/upd-order" method="POST">
+    <label>ID</label>
+    <input type="text" name="id">
+    <label>new_value</label>
+    <input type="text" name="new_value">
+    <input type="submit" value="Ubdate order">
 </form>
 </body>
 </html>
